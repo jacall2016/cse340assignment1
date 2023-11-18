@@ -1,11 +1,12 @@
+
 <!-- Content heading -->
 <% if (title) { %>
-    <h1><%= title %></h1>
+    <h1 class="error-title"><%= title %></h1>
 <% } else { %>
     <% res.redirect('/'); %>
 <% } %>
 
 <!-- Display error message -->
 <% if (message) { %>
-    <p><%= message %></p>
+    <p class="error-message"><%= message %></p>
 <% } %>

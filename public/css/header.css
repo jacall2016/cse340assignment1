@@ -1,0 +1,38 @@
+/* header.css */
+
+#top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-style: normal;
+    padding:20px;
+}
+
+  
+.large-text {
+font-size: xx-large;
+font-weight: bold;
+}
+
+.siteName a {
+color: black;
+text-decoration: none;
+}
+
+.siteName {
+font-family: 'Lora', serif;
+}
+
+.siteName a:hover {
+color: #01b0d2;
+}
+
+#tools a {
+text-decoration: none;
+color: black;
+padding: 5px;
+}
+
+#tools a:hover {
+color: #01b0d2;
+}

@@ -1,0 +1,63 @@
+/* Add this to your existing CSS */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Adjust alignment as needed */
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Align items to the start */
+  }
+  
+  .col-lg-6 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style-type: none;
+    padding-top: 30px;
+  }
+
+  .col-lg-6 ul{
+    list-style-type: none;
+  }
+  .col-lg-6 ul li {
+    padding: 10px; /* Adjust padding as needed */
+    border: 1px solid #ccc; /* Border with light gray color */
+    background-color: #f8f8f8; /* Light gray background color */
+    margin-bottom: 5px; /* Adjust margin as needed */
+    border-radius: 10px;
+  }
+
+  .col-lg-6 ul h1{
+    padding: 0px; /* Adjust padding as needed */
+    list-style-type: none;
+    margin-bottom: 10px;
+    margin-top: -20px;
+  }
+  
+  .col-lg-6 img {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Adjust margin as needed */
+    border-radius: 10px;
+  }
+  
+  /* add code to adjust to smaller screen sizes
+
+  /* Existing styles... */
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .col-lg-6 {
+      width: 100%; /* Make the column full width on smaller screens */
+    }
+  
+    /* Add any additional styles for smaller screens as needed */
+  }
+  

@@ -1,0 +1,19 @@
+<!-- views/inventory/detail.ejs -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <img src="<%= itemDetails.inv_image %>" alt="<%= itemDetails.inv_make %> <%= itemDetails.inv_model %>" />
+    </div>
+    <div class="col-lg-6">
+      <ul>
+        <h1><%= itemDetails.inv_make %> <%= itemDetails.inv_model %></h1>
+        <li>Year: <%= itemDetails.inv_year %></li>
+        <li>Price: $<%= itemDetails.formattedPrice %></li>
+        <li>Mileage: <%= itemDetails.formattedMiles %></li>
+        <li>Description: <%= itemDetails.inv_description %></li>
+        <li>Color: <%= itemDetails.inv_color %></li>
+      </ul>
+      <!-- Add other descriptive data here -->
+    </div>
+  </div>
+</div>

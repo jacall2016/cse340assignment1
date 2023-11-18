@@ -25,7 +25,27 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+/* ***************************
+ *  Get inventory item by classification_id
+ * ************************** */
+
+// Model method to get details of a specific inventory item by ID
+async function getInventoryItemById(invId) {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory WHERE inv_id = $1`,
+      [invId]
+    );
+
+    return data.rows.length > 0 ? data.rows[0] : null; // Check for empty result set
+  } catch (error) {
+    console.error("getInventoryItemById error: " + error);
+    throw error;
+  }
+}
+
 module.exports = {
     getClassifications,
     getInventoryByClassificationId,
+    getInventoryItemById
   };

@@ -1,0 +1,130 @@
+/*large view adaptations*/
+@media only screen and (min-width: 800px) {
+  body {
+    background-image: url("../images/site/checkerboard.jpg");
+   }
+
+   nav ul li {
+    display: inline;
+    padding: 40px;
+  }
+
+  .car-image img{
+    width: 500px;
+  }
+
+   .white-layer {
+    background-color: white;
+    border: 2px solid #01b0d2;
+    border-radius: 10px;
+    padding: 20px;
+    margin:20px;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+  .info {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .reviews, .upgrade-info {
+    padding: 40px;
+    margin: 0px;
+    flex:1;
+  }
+
+  .reviews {
+    order: 2;
+  }
+
+  .upgrade-info {
+    order:1;
+  }
+
+  .car-info button {
+    color: black;
+    font-weight: bold;
+    background-color: #01b0d2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }  
+}
+
+/* For small devices */
+@media only screen and (max-width: 600px) {
+  .car-image img {
+    width: 100%; /* Adjust the image width to fit smaller screens */
+    margin-left: 0; /* Remove the negative margin for better alignment */
+  }
+
+  .white-layer {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px; /* Adjust padding for better spacing on smaller screens */
+  }
+
+  nav ul li {
+    padding: 5px; /* Reduce padding for navigation items on smaller screens */
+  }
+
+  .reviews, .upgrade-info {
+    padding: 20px; /* Adjust padding for better spacing on smaller screens */
+  }
+  
+  .car-info button {
+    margin-top: 10px; /* Adjust margin-top for the button on smaller screens */
+  }
+}
+
+/* For medium devices */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .car-image img {
+    width: 70%; /* Adjust the image width for medium screens */
+  }
+
+  .white-layer {
+    margin-left: 50px; /* Adjust margin for the white layer */
+    margin-right: 50px;
+    padding: 30px; /* Adjust padding for the white layer */
+  }
+
+  nav ul li {
+    padding: 20px; /* Adjust padding for navigation items on medium screens */
+  }
+
+  .reviews, .upgrade-info {
+    padding: 30px; /* Adjust padding for the reviews and upgrade-info sections */
+  }
+  
+  .car-info button {
+    margin-top: 30px; /* Adjust margin-top for the button on medium screens */
+  }
+}
+
+/* For large devices */
+@media only screen and (min-width: 1025px) {
+  .car-image img {
+    width: 500px; /* Adjust the image width for larger screens */
+  }
+
+  .white-layer {
+    margin-left: 200px; /* Adjust margin for the white layer */
+    margin-right: 200px;
+    padding: 20px; /* Adjust padding for the white layer */
+  }
+
+  nav ul li {
+    padding: 40px; /* Adjust padding for navigation items on larger screens */
+  }
+
+  .reviews, .upgrade-info {
+    padding: 40px; /* Adjust padding for the reviews and upgrade-info sections on larger screens */
+  }
+  
+  .car-info button {
+    margin-top: 20px; /* Adjust margin-top for the button on larger screens */
+  }
+}
