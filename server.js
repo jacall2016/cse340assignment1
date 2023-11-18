@@ -44,16 +44,30 @@ app.use(async (req, res, next) => {
 * Place after all other middleware
 *************************/
 
+
+app.get('/badlink', (req, res, next) => {
+  // Intentional error to trigger a 500 response
+  next({ status: 500, message: 'This is a deliberate 500 error for the "bad link"' });
+});
+
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+
+  let message;
+  if (err.status === 500) {
+    message = err.message;
+  } else {
+    message = 'Oh no! There was a 500 Server Error. Our servers are our on holiday. Please try again later.';
+    // You can log additional details or take specific actions for 500 errors here
+  }
+
   res.render("errors/error", {
-    title: err.status || 'Server Error',
+    title: '500 Server Error',
     message,
     nav
-  })
-})
+  });
+});
 
 /* ***********************
  * Local Server Information

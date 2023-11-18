@@ -1,3 +1,8 @@
 .site-footer{
     padding: 20px;
 }
+
+.site-footer a {
+    color:blueviolet;
+    text-decoration: underline;
+}
