@@ -34,8 +34,9 @@
     border-radius: 10px;
   }
 
-  .col-lg-6 ul h1{
-    padding: 0px; /* Adjust padding as needed */
+  .col-lg-6 h1{
+    padding-top: 20px; /* Adjust padding as needed */
+    padding-left:40px;
     list-style-type: none;
     margin-bottom: 10px;
     margin-top: -20px;
@@ -54,9 +55,25 @@
 
 /* Media query for screens smaller than 768px */
 @media (max-width: 768px) {
-    .col-lg-6 {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Adjust alignment as needed */
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  
+  .col-lg-6 {
       width: 100%; /* Make the column full width on smaller screens */
     }
+
+  .col-lg-6 h1{
+    padding-top: 20px; /* Adjust padding as needed */
+    padding-left:0px;
+    list-style-type: none;
+    margin-bottom: 10px;
+    margin-top: 0px;
+  }
   
     /* Add any additional styles for smaller screens as needed */
   }

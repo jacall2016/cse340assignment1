@@ -33,3 +33,26 @@
     list-style-type: none;
   }
 
+
+  /*adjust navigation to fit in very small screens*/
+  @media (max-width: 667px) {
+    
+    .navigation {
+      align-items: left;
+      width: 100%;
+      display:flex;
+      border-radius: 10px;
+    }
+
+    .navigation ul li {
+      display:inline-flex;
+    }
+  }
+
+  /*adjust navigation to fit in very small screens*/
+  @media (max-width: 350px) {
+    .navigation ul li {
+      display:inline-flex;
+      align-content: left;
+    }
+  }
