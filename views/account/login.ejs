@@ -10,15 +10,15 @@
             <title data-title="Your Dynamic Title Here"></title>
             <h1 data-title="Your Dynamic Title Here">Login</h1>
             <%- messages() %>
-            <form name=login-form class="login" action="/account/login" method="post">
+            <form id="loginForm" class="login" action="/account/login" method="post">
                 <label for="email" name="account_email">Email:</label>
-                <input type="text" id="email" name="account_email" required>
+                <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>">
                 
                 <label for="password" name="account_password">Password:</label>
                 <div class="password-message">
                     <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
                 </div>
-                <input type="password" id="password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
                 <!-- Toggle button to toggle password visibility -->
                 <button type="button" id="togglePassword">
                     <i class="far fa-eye" id="eyeClosed"></i>

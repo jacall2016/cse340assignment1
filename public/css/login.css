@@ -51,7 +51,7 @@
 }
   
 .password-message {
-    visibility: hidden;
+    visibility: visible;
 }
   
 /* Adjust width for small screens */

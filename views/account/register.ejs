@@ -24,15 +24,15 @@
         <form name="register-form" class="registration" action="/account/register" method="post">
             <!-- First Name Input -->
             <label for="account_firstName">First Name:</label>
-            <input type="text" id="account_firstname" name="account_firstname" required>
+            <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
         
             <!-- Last Name Input -->
             <label for="account_lastName">Last Name:</label>
-            <input type="text" id="account_lastName" name="account_lastName" required>
+            <input type="text" id="account_lastName" name="account_lastName" required value="<%= locals.account_lastName %>">
 
             <!-- Email Input -->
             <label for="account_email">Email:</label>
-            <input type="email" id="account_email" name="account_email" required>
+            <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>">
         
             <!-- Password Input Container with Toggle button -->
             <label for="account_password">Password:</label>
