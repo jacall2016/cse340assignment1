@@ -1,4 +1,62 @@
-.login {
-    background-color: #334561;
-    color: white;
+  /* Login box styling */
+  .login-box {
+    background-color: #b3d9ff; /* Light blue background */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    margin: 20px auto; /* Center the box horizontally and add margin at the top and bottom */
+    width: 50%; /* Take up 50% of the width */
+  }
+
+  .login-box title,
+  .login-box h1 {
+    content: attr(data-title); /* Set the content to the value of the data-title attribute */
+    text-align: center; /* Center the text within the element */
+  }
+
+  /* Form styling */
+  .login {
+    background-color: #4d6a99; /* Dark blue background for form */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  /* Label styling */
+  .login label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff; /* White text */
+    font-weight: bold; /* Bold text */
+  }
+  
+  /* Input styling */
+  .login input[type="text"],
+  .login input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  /* Submit button styling */
+  .login input[type="submit"] {
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    display: block; /* Make it a block-level element */
+    margin: 0 auto; /* Center the submit button horizontally */
 }
+  
+.password-message {
+    visibility: hidden;
+}
+  
+/* Adjust width for small screens */
+@media screen and (max-width: 768px) {
+    .login-box {
+      width: 90%; /* Take up 90% of the width for small screens */
+    }
+  }

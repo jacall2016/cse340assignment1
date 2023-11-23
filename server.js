@@ -16,8 +16,8 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/index")
 const session = require("express-session")
 const pool = require('./database/')
-
-
+const flash = require('connect-flash');
+const bodyParser = require('body-parser');
 /* ***********************
  * Middleware
  * ************************/
@@ -33,13 +33,17 @@ app.use(session({
 }))
 
 // Express Messages Middleware
-app.use('/account', accountRouter);
-app.use(require('connect-flash')())
+
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(flash());
+app.use('/account', accountRouter);
 
 /* ***********************
  * View Engine and Templates

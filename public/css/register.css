@@ -1,0 +1,84 @@
+/* Registration box styling */
+.registration-box {
+    background-color: #b3d9ff; /* Light blue background */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    margin: 20px auto; /* Center the box horizontally and add margin at the top and bottom */
+    width: 50%; /* Adjusted to take up 70% of the width */
+}
+
+/* Title and Header styling */
+.registration-box h1 {
+    text-align: center;
+    color: #003366; /* Dark blue text color */
+}
+
+/* Form styling */
+.registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the labels and inputs */
+}
+
+/* Label styling */
+.registration label {
+    margin-bottom: 5px;
+    color: #003366; /* Dark blue text color */
+}
+
+/* Input styling */
+.registration input {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #003366; /* Dark blue border */
+    border-radius: 5px; /* Rounded borders */
+    max-width: 400px; /* Set a max width for the inputs */
+}
+
+/* Password input styling */
+.registration #password {
+    width: calc(100% - 70px); /* Adjust as needed (width of the eye icon plus padding) */
+}
+
+/* Toggle button styling */
+#togglePassword {
+    background-color: #b3d9ff;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px; /* Add margin between the eye icon and password input */
+    padding-bottom: 10px;
+}
+
+.password-container .password-input,
+.password-container button {
+    height: 35px; /* Adjust the height as needed to match your input */
+}
+
+/* Password container styling */
+.password-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center horizontally */
+    margin-bottom: 15px; /* Add margin between the password input and other inputs */
+}
+
+/* Submit button styling */
+.registration input[type="submit"] {
+    background-color: #003366; /* Dark blue background */
+    color: #ffffff; /* White text color */
+    border: none;
+    border-radius: 5px; /* Rounded borders */
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* No account link styling */
+.registration p {
+    text-align: center;
+    margin-top: 15px;
+    color: #003366; /* Dark blue text color */
+}
+
+.registration a {
+    color: #003366; /* Dark blue text color */
+}
