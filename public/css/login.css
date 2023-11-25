@@ -1,33 +1,38 @@
-  /* Login box styling */
-  .login-box {
-    background-color: #b3d9ff; /* Light blue background */
-    padding: 20px;
-    border-radius: 10px; /* Rounded corners */
-    margin: 20px auto; /* Center the box horizontally and add margin at the top and bottom */
-    width: 50%; /* Take up 50% of the width */
-  }
+ /* Login box styling */
+ .login-box {
+  background-color: #b3d9ff; /* Light blue background */
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+  margin: 20px auto; /* Center the box horizontally and add margin at the top and bottom */
+  width: 50%; /* Take up 50% of the width */
+}
 
-  .login-box title,
-  .login-box h1 {
-    content: attr(data-title); /* Set the content to the value of the data-title attribute */
-    text-align: center; /* Center the text within the element */
-  }
 
-  /* Form styling */
-  .login {
-    background-color: #4d6a99; /* Dark blue background for form */
-    padding: 20px;
-    border-radius: 10px; /* Rounded corners */
-  }
-  
-  /* Label styling */
-  .login label {
-    display: block;
-    margin-bottom: 5px;
-    color: #fff; /* White text */
-    font-weight: bold; /* Bold text */
-  }
-  
+/* Form styling */
+.login {
+  background-color: #4d6a99; /* Dark blue background for form */
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Label styling */
+.login label {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff; /* White text */
+  font-weight: bold; /* Bold text */
+}
+
+/* Input styling */
+.login input[type="email"],
+.login input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Rounded corners */
+}
+
   /* Input styling */
   .login input[type="text"],
   .login input[type="password"] {
@@ -53,6 +58,18 @@
 .password-message {
     visibility: visible;
 }
+
+/* Toggle button styling */
+#togglePassword {
+  background-color: #b3d9ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px;
+  min-height: 30px;
+  min-width: 30px;
+}
+
   
 /* Adjust width for small screens */
 @media screen and (max-width: 768px) {
