@@ -51,50 +51,45 @@ app.use('/account', accountRouter);
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
+
 /* ***********************
  * Routes
  *************************/
 app.use(static)
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
-/*
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})
-*/
-
 // Inventory routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", inventoryRoute);
+
+// Specific route handlers go here
+
+// Express Error Handler (Place after all other middleware)
+app.get('/badlink', (req, res, next) => {
+  // Intentional error to trigger a 404 response for a "bad link"
+  next({ status: 404, message: 'This is a deliberate 404 error for the "bad link" route.' });
+});
 
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
-
-/* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
-
-
-app.get('/badlink', (req, res, next) => {
-  // Intentional error to trigger a 500 response
-  next({ status: 500, message: 'This is a deliberate 500 error for the "bad link"' });
+  next({ status: 404, message: 'Sorry, we appear to have lost that page.' });
 });
 
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  
+  // Log the error to console or a dedicated error log file
+  console.error(`Error at: "${req.originalUrl}" (${req.method}): ${err.message}`);
 
   let message;
-  if (err.status === 500) {
-    message = err.message;
+  if (err.status === 404) {
+    message = 'Oops! The page you are looking for does not exist.';
   } else {
-    message = 'Oh no! There was a 500 Server Error. Our servers are our on holiday. Please try again later.';
+    message = 'Oh no! There was a server error. Our servers are on holiday. Please try again later.';
     // You can log additional details or take specific actions for 500 errors here
   }
 
+  // Render the error page
   res.render("errors/error", {
-    title: '500 Server Error',
+    title: 'Error',
     message,
     nav
   });

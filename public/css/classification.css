@@ -76,3 +76,7 @@
         transition: transform 0.3s ease; /* Add a smooth transition effect */
     }
 }
+
+div h1 {
+    margin-left: 60px;
+}

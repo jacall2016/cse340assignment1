@@ -57,10 +57,78 @@ Util.buildClassificationGrid = async function(data){
     return grid
   }
 
+Util.buildClassificationList = async function (classification_id = null) {
+  let data = await invModel.getClassifications();
+  let classificationList =
+    '<select name="classification_id" id="classificationList" >';
+  classificationList += "<option>Choose a Classification</option>";
+  data.rows.forEach((row) => {
+    classificationList += `<option value="${row.classification_id}"${
+      classification_id != null && row.classification_id == classification_id
+        ? " selected"
+        : ""
+    }>${row.classification_name}</option>`;
+    if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      classificationList += " selected ";
+    }
+    classificationList += `>${row.classification_name}</option>}`;
+  });
+  classificationList += "</select>";
+  return classificationList;
+};
+
 // Function to add commas to a number
 Util.numberWithCommas = function(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+
+Util.buildClassificationList = async function (classification_id = null) {
+  let data = await invModel.getClassifications();
+  let classificationList =
+    '<select name="classification_id" id="classificationList" >';
+  classificationList += "<option>Classification</option>";
+  data.rows.forEach((row) => {
+    classificationList += `<option value="${row.classification_id}"${
+      classification_id != null && row.classification_id == classification_id
+        ? " selected"
+        : ""
+    }>${row.classification_name}</option>`;
+    if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      classificationList += " selected ";
+    }
+    classificationList += `>${row.classification_name}</option>}`;
+  });
+  classificationList += "</select>";
+  return classificationList;
+};
+
+Util.getManagementView = async function(req, res, next) {
+  try {
+    // Construct the HTML content for the management view
+    let managementView = '<h1>Management</h1>';
+
+    // Add links for adding new classification and new inventory
+    managementView += '<ul>';
+    managementView += '<li><a href="../../inv/add-classification" title="Add New Classification">Add New Classification</a></li>';
+    managementView += '<li><a href="../../inv/add-inventory" title="Add New Inventory">Add New Inventory</a></li>';
+    managementView += '</ul>';
+
+    // Return the constructed HTML
+    return managementView;
+  } catch (error) {
+    // Handle any errors that may occur
+    next(error);
+  }
+};
+
+
 
 /* ****************************************
  * Middleware For Handling Errors

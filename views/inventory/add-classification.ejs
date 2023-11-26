@@ -1,0 +1,32 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else { res.redirect('/') } %>
+    
+    <!-- messages -->
+    
+    <%- messages() %>
+    
+    <!-- Errors -->
+    <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+    <% } %>
+    
+    <!-- Management view -->
+    <%#- addClassificationView %>
+    <div class="add-classification-container">
+      <form class="add-classification" method="POST">
+        <legend class="classification-legend">Field is required</legend>
+        <fieldset class="classification-fieldset">
+          <label class="classification-label" for="classification_name">Classification Name:</label>
+          <p class="classification-info">Name must be alphabetic characters only</p>
+          <input class="input" type="text" name="classification_name" id="classification_name" pattern="[A-Za-z]+" title="Classification name must not contain spaces or special characters." required value="<%= locals.classification_name %>" />
+          <button class="classification-button" type="submit">
+            Add Classification
+          </button>
+        </fieldset>
+      </form>
+    </div>

@@ -1,3 +1,7 @@
+.car-display {
+  padding-left: 30px;
+}
+
 /*large view adaptations*/
 @media only screen and (min-width: 800px) {
   body {
@@ -127,4 +131,8 @@
   .car-info button {
     margin-top: 20px; /* Adjust margin-top for the button on larger screens */
   }
+}
+
+.h1-title {
+ margin-left: 60px;
 }

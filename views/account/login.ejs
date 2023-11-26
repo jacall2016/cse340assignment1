@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('../partials/head') %>
-<!--<title data-title="Your Dynamic Title Here">Login</title>-->
-
+<%- include('../partials/header', { pageTitle: "Account Login" }) %>
+<%- include('../partials/navigation') %>
     <div id="wrapper" class="white-layer">
-        <%- include('../partials/header') %>
-        <%- include('../partials/navigation') %>
 
-        <div class="login-box">
+        <div class="login-box">              
             
             <h1 data-title="Your Dynamic Title Here">Login</h1>
             <%- messages() %>

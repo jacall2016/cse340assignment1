@@ -1,0 +1,86 @@
+.add-inventory-h1 {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.add-inventory-container {
+    background-color: #b3d9ff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.add-inventory {
+    padding: 10px;
+}
+
+.inventory-submit-button {
+    margin-top: 20px;
+
+}
+
+.add-inventory-container input {
+    width: 100%; /* Set the width to 100% of the container */
+    height: 40px; /* Set the desired height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin-bottom: 10px; /* Add margin at the bottom for spacing */
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#inv_description {
+    width: 100%;
+    padding: 10px;
+    height: 150px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin-bottom: 10px; /* Add margin at the bottom for spacing */
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .add-inventory-container {
+      background-color: #b3d9ff;
+      padding: 20px;
+      border-radius: 5px;
+      width: 75%;
+  }
+}
+
+.add-inventory-fieldset {
+    color: white;
+    background-color: #4d6a99;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 10px;
+    text-align: left; /* Align contents to the left */
+}
+
+.add-inventory-label {
+    padding-top: 10px;
+    padding-bottom: 10px; /* Adjust the padding as needed */
+    display: block; /* Each label on its own line */
+}
+
+/* Assuming the input has a class or ID, replace '.your-input-class' with the actual class or ID */
+.your-input-class {
+    display: block; /* Place the input on its own line */
+    margin-top: 10px; /* Add margin for spacing if needed */
+}
+
+#inv_make {
+    display: block; /* Place the input on its own line */
+    margin-top: 10px; /* Add margin for spacing if needed */
+}
+
+.add-inventory-container button {
+    background-color: #003366;
+    color: white;
+    border-radius: 5px;
+    width: 200px; /* Set a fixed width */
+    margin: 0 auto;
+    height: 40px; /* Set the desired height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin-top: 10px; /* Add margin at the top for spacing */
+}

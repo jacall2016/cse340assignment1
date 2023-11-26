@@ -4,6 +4,47 @@ const utilities = require("../utilities/index.js")
 const invCont = {}
 
 /* ***************************
+ * Render management view
+ * ************************** */
+invCont.renderManagementView = async function (req, res, next) {
+  console.log("renderManagementView function is being called");
+  try {
+    // Example: Rendering the management view
+    let nav = await utilities.getNav();
+    let managementView = await utilities.getManagementView(req, res, next); // Include the new function
+
+    // You can customize the title and other data as needed
+    res.render("inventory/management", {
+      title: 'Inventory Management',
+      nav,
+      managementView, // Include the management view content
+    });
+  } catch (error) {
+    console.error('Error in renderManagementView:', error);
+    next(error);
+  }
+};
+
+invCont.addNewClassification = async function (req, res, next) {
+  try {
+    const { classification_name } = req.body;
+    await invModel.insertNewClassification(classification_name);
+    req.flash(
+      "notice",
+      `New classification ${classification_name} added successfully!`
+    );
+    res.status(201).redirect("/inv");
+  } catch (error) {
+    console.error("Error adding new classification:", error);
+    req.flash("error", "Error adding new classification.");
+    res.status(500).render("inv/classification_add", {
+      title: "Add Classification",
+      nav,
+    });
+  }
+};
+
+/* ***************************
  *  Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
@@ -18,6 +59,17 @@ invCont.buildByClassificationId = async function (req, res, next) {
     grid
   })
 }
+
+
+invCont.buildAddClassification = async function (req, res, next) {
+  console.log("buildAddClassification is called");
+  const nav = await utilities.getNav();
+  res.render("./inventory/add-classification", {
+    title: "Add Classification",
+    nav,
+    errors: null,
+  });
+};
 
 /* ***************************
  * Show inventory item by detail
@@ -55,5 +107,54 @@ invCont.showInventoryItemDetail = async function (req, res, next) {
     next(error);
   }
 };
+
+/* ***************************
+ *  Add New Inventory Item to the Database
+ *  This function handles the POST request for adding a new inventory item.
+ *  It retrieves all the necessary data from the request body,
+ *  invokes the model function to insert the data into the database,
+ *  and then redirects to the inventory management page and displays a success message.
+ * ************************** */
+
+invCont.addNewInventoryItem = async function (req, res, next) {
+  try {
+    const itemData = req.body;
+    await invModel.insertNewInventoryItem(itemData);
+    req.flash("notice", "New inventory item added successfully!");
+    res.status(201).redirect("/inv");
+  } catch (error) {
+    console.error("Error adding new inventory item:", error);
+    req.flash("error", "Error adding new inventory item.");
+    res.status(500).render("inv/item_add", {
+      title: "Add Inventory Item",
+      nav,
+    });
+  }
+};
+
+
+invCont.buildAddInventoryItem = async function (req, res, next) {
+  const nav = await utilities.getNav();
+  const classificationList = await utilities.buildClassificationList();
+  res.render("./inventory/add-inventory", {
+    title: "Add Inventory Item",
+    nav,
+    classificationList,
+    errors: null,
+  });
+};
+
+
+invCont.buildAddInventoryItem = async function (req, res, next) {
+  const nav = await utilities.getNav();
+  const classificationList = await utilities.buildClassificationList();
+  res.render("./inventory/add-inventory", {
+    title: "Add Inventory Item",
+    nav,
+    classificationList,
+    errors: null,
+  });
+};
+
 
 module.exports =  invCont;

@@ -1,0 +1,89 @@
+/* Style for your EJS file with updated class names */  
+  /* Title styling */
+  h1 {
+    text-align: center;
+  }
+  
+  /* Messages and Errors styling */
+  .notice {
+    list-style: none;
+    background-color: #4d6a99;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+  }
+  
+  /* Add Classification form container styling */
+  .add-classification-container {
+    background-color: #b3d9ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  /* Legend styling */
+  .classification-legend {
+    color: black;
+    font-weight: bold;
+  }
+
+  .add-classification {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Add Classification form styling */
+ .classification-fieldset {
+  padding:20px;
+  border-radius: 5px;
+  margin: 0 auto;
+  background-color: #4d6a99;
+  margin-top:20px;
+}
+  
+  /* Label styling for classification form */
+  .classification-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Input styling for classification form */
+  .input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Classification button styling */
+  .classification-button {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+  
+  /* Info styling */
+  .classification-info {
+    color: #fff;
+  }
+  
+  /* Adjust width for small screens */
+  @media screen and (max-width: 768px) {
+    #wrapper {
+      width: 90%;
+    }
+  
+    .add-classification {
+      width: 90%;
+    }
+  }
+  

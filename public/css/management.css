@@ -1,0 +1,35 @@
+/* Add this CSS to your management.ejs file or link to an external stylesheet */
+  
+  .management-container {
+    background-color: #b3d9ff; /* Background color for the management container */
+    padding: 20px;
+  }
+  
+  .managment {
+    background-color: #b3d9ff;
+    margin:10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .management-container h1 {
+    text-align: center;
+  }
+  
+  .management a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #003366; /* Link color */
+  }
+  
+  /* Center links under h1 */
+  .management ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .management li {
+    display: inline;
+    margin: 0 10px;
+  }
+  

@@ -73,6 +73,7 @@
   
 /* Adjust width for small screens */
 @media screen and (max-width: 768px) {
+
     .login-box {
       width: 90%; /* Take up 90% of the width for small screens */
     }
