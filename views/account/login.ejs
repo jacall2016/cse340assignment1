@@ -20,10 +20,10 @@
                 <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
                 <!-- Toggle button to toggle password visibility -->
                 <button type="button" id="togglePassword">
-                    <i class="far fa-eye" id="eyeClosed"></i>
+                    <i class="far fa-eye" id="eyeClosed">hidden</i>
                 </button>
 
-                <label for="submit"><input type="submit" id="submit">submit</label>
+                <input type="submit" id="submit" value = "submit">
             </form>
             <p>No account? <a href="/account/register">Sign-up</a></p>
         </div>
@@ -41,9 +41,9 @@
 
                         // Toggle eye icons
                         if (type === 'password') {
-                            togglePasswordButton.innerHTML = '<i class="far fa-eye-slash"></i>'; // Font Awesome closed eye icon
+                            togglePasswordButton.innerHTML = '<i class="far fa-eye-slash">hidden</i>'; // Font Awesome closed eye icon
                         } else {
-                            togglePasswordButton.innerHTML = '<i class="far fa-eye"></i>'; // Font Awesome open eye icon
+                            togglePasswordButton.innerHTML = '<i class="far fa-eye">visible</i>'; // Font Awesome open eye icon
                         }
                     });
                 }

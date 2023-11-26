@@ -89,23 +89,16 @@ Util.numberWithCommas = function(x) {
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications();
   let classificationList =
-    '<select name="classification_id" id="classificationList" >';
-  classificationList += "<option>Classification</option>";
+    '<select name="classification_id" id="classificationList">';
+  classificationList += '<option value="" disabled selected>Classification</option>';
   data.rows.forEach((row) => {
     classificationList += `<option value="${row.classification_id}"${
       classification_id != null && row.classification_id == classification_id
         ? " selected"
         : ""
     }>${row.classification_name}</option>`;
-    if (
-      classification_id != null &&
-      row.classification_id == classification_id
-    ) {
-      classificationList += " selected ";
-    }
-    classificationList += `>${row.classification_name}</option>}`;
   });
-  classificationList += "</select>";
+  classificationList += '</select>';
   return classificationList;
 };
 

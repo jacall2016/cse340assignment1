@@ -7,7 +7,7 @@
 
     
     <div class="registration-box" data-title="Registration">
-        <h1 data-title="Registration">Registration</h1>
+        <h1 data-title="Registration" class="registration-h1">Registration</h1>
         <!-- Display flash message if one is sent -->
         <%- messages() %>
 
@@ -43,7 +43,7 @@
                 <input type="password" id="account_password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
                 <!-- Toggle button to toggle password visibility -->
                 <button type="button" id="togglePassword">
-                    <i class="far fa-eye" id="eyeClosed"></i>
+                    <i class="far fa-eye" id="eyeClosed">hidden</i>
                 </button>
             </div>
 
@@ -68,9 +68,9 @@
 
                 // Toggle eye icons
                 if (type === 'password') {
-                    togglePasswordButton.innerHTML = '<i class="far fa-eye-slash"></i>'; // Font Awesome closed eye icon
+                    togglePasswordButton.innerHTML = '<i class="far fa-eye-slash">hidden</i>'; // Font Awesome closed eye icon
                 } else {
-                    togglePasswordButton.innerHTML = '<i class="far fa-eye"></i>'; // Font Awesome open eye icon
+                    togglePasswordButton.innerHTML = '<i class="far fa-eye">visible</i>'; // Font Awesome open eye icon
                 }
             });
         }

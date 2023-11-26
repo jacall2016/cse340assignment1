@@ -22,7 +22,7 @@
     
     <div class="add-inventory-container">
       <form class="add-inventory" method="POST">
-        <legend>*ALL FIELDS ARE REQUIRED</legend>
+        <p>*ALL FIELDS ARE REQUIRED</p>
         <fieldset class="add-inventory-fieldset">
             <label class="add-inventory-label" for="inv_make">Make:</label>
           <%- classificationList %>
@@ -35,10 +35,10 @@
             <input class="input top" type="text" name="inv_year" id="inv_year" required pattern="\d{4}" title="Please enter a valid year." value="<%= locals.inv_year %>" placeholder="4-digit year"/>
     
             <label class="add-inventory-label" for="inv_description">Description:</label>
-            <textarea name="inv_description" id="inv_description" required placeholder="A detailed description of the item" value="<%= locals.inv_description %>"></textarea>
-    
+            <textarea name="inv_description" id="inv_description" required placeholder="A detailed description of the item"><%= locals.inv_description %></textarea>
+                
             <label class="add-inventory-label" for="inv_image">Image:</label>
-            <input class="input mid" type="text" name="inv_image" id="inv_image" required pattern=".*\.(png|jpg|jpeg|webp)$" title="Image must end with .png, .jpg, .jpeg, or .webp" value="/images/vehicles/no-image.png"placeholder="/images/vehicles/no-image.png"/>
+            <input class="input mid" type="text" name="inv_image" id="inv_image" required pattern=".*\.(png|jpg|jpeg|webp)$" title="Image must end with .png, .jpg, .jpeg, or .webp" value="/images/vehicles/no-image.png" placeholder="/images/vehicles/no-image.png"/>
     
             <label class="add-inventory-label" for="inv_thumbnail">Thumbnail:</label>
             <input class="input mid" type="text" name="inv_thumbnail" id="inv_thumbnail" required pattern=".*\.(png|jpg|jpeg|webp)$" title="Thumbnail must end with .png, .jpg, .jpeg, or .webp" value="/images/vehicles/no-image.png" placeholder="/images/vehicles/no-image.png"/>
@@ -50,7 +50,7 @@
             <input class="input bottom" type="text" name="inv_miles" id="inv_miles" required pattern="\d+" title="Miles should only contain numbers." value="<%= locals.inv_miles %>" placeholder="Digits only"/>
     
             <label class="add-inventory-label" for="inv_color">Color:</label>
-            <input class="input bottom"type="text"name="inv_color" id="inv_color"required pattern="[A-Za-z ]{1,}"title="Color can only contain letters and spaces." value="<%= locals.inv_color %>"placeholder="Example: Red"/>
+            <input class="input bottom" type="text" name="inv_color" id="inv_color" required pattern="[A-Za-z ]{1,}" title="Color can only contain letters and spaces." value="<%= locals.inv_color %>" placeholder="Example: Red"/>
         </fieldset>
         <button class="inventory-submit-button" type="submit">Add Inventory Item</button>
       </form>

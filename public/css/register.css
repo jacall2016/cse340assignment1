@@ -9,8 +9,8 @@
 }
 
 /* Title and Header styling */
-.registration-box h1 {
-    text-align: center;
+.registration-box .registration-h1 {
+    padding:10px;
     color: #003366; /* Dark blue text color */
 }
 
@@ -90,4 +90,10 @@
 
 .registration a {
     color: #003366; /* Dark blue text color */
+}
+
+.password-message {
+    color: yellow;
+    padding: 10px;
+    font-size: small;
 }
