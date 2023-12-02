@@ -13,11 +13,13 @@ const static = require("./routes/static")
 const accountRouter = require('./routes/accountRoute.js');
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require("./utilities/index")
+//const utilities = require("./utilities/index")
+const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require('./database/')
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
 /* ***********************
  * Middleware
  * ************************/
@@ -39,11 +41,14 @@ app.use(function(req, res, next){
   next()
 })
 
+app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.use(flash());
 app.use('/account', accountRouter);
+
 
 /* ***********************
  * View Engine and Templates
@@ -83,7 +88,7 @@ app.use(async (err, req, res, next) => {
   if (err.status === 404) {
     message = 'Oops! The page you are looking for does not exist.';
   } else {
-    message = 'Oh no! There was a server error. Our servers are on holiday. Please try again later.';
+    message = 'error! these are not the pages you are looking for';
     // You can log additional details or take specific actions for 500 errors here
   }
 
@@ -94,6 +99,11 @@ app.use(async (err, req, res, next) => {
     nav
   });
 });
+
+/* ***********************
+ * Middleware to check token validity
+ *************************/
+app.use(utilities.checkJWTToken);
 
 /* ***********************
  * Local Server Information

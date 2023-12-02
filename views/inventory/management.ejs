@@ -5,4 +5,18 @@
     </div>
     <!-- Display flash message -->
     <%- messages() %>
+
+
+<li><a href="/inv/newClassicifaction" title="Click to add a new Vehicle classification">Add New Classification</a></li> 
+<li><a href="/inv/newVehicle/" title="Click to ass a new vehicle">Add New Vehicle</a></li>
+
+<h2>Manage Inventory</h2>
+<p>Choose a classification to see those inventory items.</p>
+<%- ClassificationSelect %>
+
+<table id="inventoryDisplay"></table>
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<script src="../../js/inventory.js"></script>
 </div>

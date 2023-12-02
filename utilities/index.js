@@ -1,5 +1,7 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -55,7 +57,35 @@ Util.buildClassificationGrid = async function(data){
       grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
     }
     return grid
-  }
+  };
+
+  Util.buildVehicleDetails = async function (data) {
+    let vehicle = data;
+    let vehicleDetails;
+    vehicleDetails = `<div class="detail-view">`;
+    vehicleDetails += `<h1>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h1>`;
+    vehicleDetails += `<div class="details-container">`;
+    vehicleDetails += `<div class="image-container">`;
+    vehicleDetails += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}" width="1000"/>`;
+    vehicleDetails += `</div>`;
+    vehicleDetails += `<div class="info-container">`;
+    vehicleDetails += `<h2>${vehicle.inv_make} ${vehicle.inv_model} Details</h2>`;
+    vehicleDetails += `<ul class="detail-info-list">`;
+    vehicleDetails += `<li class="list-item price"><span class="bolded">Price:</span> $${new Intl.NumberFormat(
+      "en-US"
+    ).format(vehicle.inv_price)}</li>`;
+    vehicleDetails += `<li class="list-item"><span class="bolded">Description:</span> ${vehicle.inv_description}</li>`;
+    vehicleDetails += `<li class="list-item"><span class="bolded">Color:</span> ${vehicle.inv_color}</li>`;
+    vehicleDetails += `<li class="list-item"><span class="bolded">Miles:</span> ${new Intl.NumberFormat(
+      "en-US"
+    ).format(vehicle.inv_miles)}</li>`;
+  
+    vehicleDetails += `</ul>`;
+    vehicleDetails += `</div>`;
+    vehicleDetails += `</div>`;
+    vehicleDetails += `</div>`;
+    return vehicleDetails;
+  };
 
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications();
@@ -84,7 +114,6 @@ Util.buildClassificationList = async function (classification_id = null) {
 Util.numberWithCommas = function(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-
 
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications();
@@ -121,7 +150,43 @@ Util.getManagementView = async function(req, res, next) {
   }
 };
 
+/* ****************************************
+ * Middleware to check token validity
+ **************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        if (err) {
+          
+          req.flash("Please log in");
+          res.clearCookie("jwt");
+          return res.redirect("/account/login");
+        }
+        res.locals.accountData = accountData;
+        res.locals.loggedin = 1;
+        next();
+      }
+    );
+  } else {
+    console.log("not working");
+    next();
+  }
+};
 
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next();
+  } else {
+    req.flash("notice", "Please log in.");
+    return res.redirect("/account/login");
+  }
+};
 
 /* ****************************************
  * Middleware For Handling Errors
