@@ -23,7 +23,7 @@ router.post(
   regValidate.loginRules(),
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
-); 
+);
 
 // Process the registration data
 router.post(
@@ -31,13 +31,12 @@ router.post(
   regValidate.registationRules(),
   regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
-)
+);
 
 router.get(
   "/accountManagement",
   utilities.checkLogin,  // change this back to checkLogin. This was commented out to coniue forwad with development testing
-  accountController.getAccountManagementView,
-  utilities.handleErrors()
+  utilities.handleErrors(accountController.getAccountManagementView)
 );
 
 // Export the router for use elsewhere

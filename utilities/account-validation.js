@@ -42,6 +42,7 @@ validate.loginRules = () => {
  * Check data and return errors or continue to login
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
+  console.log("checkLoginData called");
   const { account_email, account_password } = req.body;
   let errors = [];
   errors = validationResult(req);
