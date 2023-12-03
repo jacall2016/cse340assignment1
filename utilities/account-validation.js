@@ -64,7 +64,6 @@ validate.checkLoginData = async (req, res, next) => {
  *  Registration Data Validation Rules
  * ********************************* */
 validate.registationRules = () => {
-  console.log("registationRules######################");
   return [
 
     // valid email is required and cannot already exist in the DB

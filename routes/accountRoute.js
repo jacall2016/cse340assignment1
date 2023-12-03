@@ -20,6 +20,7 @@ router.get(
 // Process the login attempt
 router.post(
   "/login",
+  ()=>{console.log("GOT A LOGIN REQ")},
   regValidate.loginRules(),
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
