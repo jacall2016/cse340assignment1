@@ -58,7 +58,7 @@ async function registerAccount(req, res) {
     account_firstname,
     account_lastname,
     account_email,
-    account_password
+    hashedPassword
   );
 
   if (regResult) {
@@ -87,8 +87,7 @@ async function accountLogin(req, res) {
   let nav = await utilities.getNav()
   const { account_email, account_password } = req.body
   const accountData = await accountModel.getAccountByEmail(account_email)
-  
-  if (!accountData) {
+  if (!accountData) {  
     req.flash("notice", "Please check your credentials and try again.")
     res.status(400).render("account/login", {
       title: "Login",
@@ -110,9 +109,18 @@ async function accountLogin(req, res) {
       res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
       return res.redirect("/account/accountManagement");
     }
+    else {
+      req.flash("notice", 'Sorry, password failed');
+      res.render("account/login", {
+        title: "Login",
+        nav,
+        errors: null,
+      });
+    }
   } catch (error) {
    return new Error('Access Forbidden')
   }
+  
  }
 
  /* ***********************
@@ -127,7 +135,7 @@ async function logout(req, res) {
  * Get Account View
  *************************/
 async function getAccountManagementView(req, res, next) {
-  console.log("getAccountManagement called")
+  console.log("res.locals.loggedin:", res.locals.loggedin);
   let nav = await utilities.getNav();
   res.render("account/accountManagement", {
     title: "Account Management",

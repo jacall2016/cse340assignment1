@@ -5,6 +5,14 @@ const accountController = require("../controllers/accountController.js");
 const utilities = require("../utilities");
 const regValidate = require('../utilities/account-validation')
 
+//deliver account Managment view
+//JWT Authorization activity
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.getAccountManagementView)
+);
+
 // "GET" route for the path that will be sent when the "My Account" link is clicked
 router.get(
   "/login", 
@@ -20,10 +28,10 @@ router.get(
 // Process the login attempt
 router.post(
   "/login",
-  ()=>{console.log("GOT A LOGIN REQ")},
+  //()=>{console.log("GOT A LOGIN REQ")},
   regValidate.loginRules(),
   regValidate.checkLoginData,
-  utilities.handleErrors(accountController.accountLogin)
+  utilities.handleErrors(accountController.accountLogin),
 );
 
 // Process the registration data
@@ -32,12 +40,6 @@ router.post(
   regValidate.registationRules(),
   regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
-);
-
-router.get(
-  "/accountManagement",
-  utilities.checkLogin,  // change this back to checkLogin. This was commented out to coniue forwad with development testing
-  utilities.handleErrors(accountController.getAccountManagementView)
 );
 
 // Export the router for use elsewhere

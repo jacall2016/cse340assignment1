@@ -7,7 +7,6 @@ const validate = {};
  *  Login Data Validation Rules
  * ********************************* */
 validate.loginRules = () => {
-  console.log("login rules called")
   return [
     // valid email is required
     body("account_email")
@@ -15,26 +14,6 @@ validate.loginRules = () => {
       .isEmail()
       .normalizeEmail()
       .withMessage("A valid email is required.")
-      .custom(async (account_email) => {
-        const emailExists = await accountModel.checkExistingEmail(
-          account_email
-        );
-        if (emailExists) {
-          throw new Error("Email exist. Please log in or use different email.");
-        }
-      }),
-    // password is required
-    body("account_password")
-      .trim()
-      .isStrongPassword({
-        minLength: 12,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-      })
-      .notEmpty()
-      .withMessage("Password must meet requirements."),
   ];
 };
 
@@ -42,7 +21,6 @@ validate.loginRules = () => {
  * Check data and return errors or continue to login
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
-  console.log("checkLoginData called");
   const { account_email, account_password } = req.body;
   let errors = [];
   errors = validationResult(req);

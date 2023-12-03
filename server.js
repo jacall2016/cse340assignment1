@@ -45,10 +45,7 @@ app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.use(flash());
-app.use('/account', accountRouter);
-
 
 /* ***********************
  * View Engine and Templates
@@ -65,6 +62,7 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute);
+app.use('/account', accountRouter);
 
 // Specific route handlers go here
 
