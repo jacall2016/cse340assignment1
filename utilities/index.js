@@ -180,10 +180,12 @@ Util.checkJWTToken = (req, res, next) => {
  *  Check Login
  * ************************************ */
 Util.checkLogin = (req, res, next) => {
+  console.log("res.locals: " + JSON.stringify(res.locals))
+  
   if (res.locals.loggedin) {
     next();
   } else {
-    req.flash("notice", "Please log in.");
+    req.flash("notice", "invalid password! Please log in.");
     return res.redirect("/account/login");
   }
 };
