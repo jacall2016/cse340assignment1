@@ -45,11 +45,10 @@ invCont.addNewInventoryItem = async function (req, res, next) {
 invCont.renderManagementView = async function (req, res, next) {
   const nav = await utilities.getNav();
   const classificationSelect = await utilities.buildClassificationList();
-  const managementView = await utilities.getManagementView();
   res.render("inventory/management", {
     title: 'Inventory Management',
     nav,
-    managementView,
+    classificationSelect,
     errors: null,
   });
 };
@@ -105,7 +104,6 @@ invCont.showInventoryItemDetail = async function (req, res, next) {
 
 invCont.buildAddClassification = async function (req, res, next) {
   const nav = await utilities.getNav();
-  const classificationSelect = await utilities.buildClassificationList();
   res.render("./inventory/add-classification", {
     title: "Add Classification",
     nav,
