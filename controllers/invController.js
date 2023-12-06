@@ -28,6 +28,7 @@ invCont.addNewClassification = async function (req, res, next) {
 invCont.addNewInventoryItem = async function (req, res, next) {
   try {
     const itemData = req.body;
+    
     await invModel.insertNewInventoryItem(itemData);
     req.flash("notice", "New inventory item added successfully!");
     res.status(201).redirect("/inv");

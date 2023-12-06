@@ -61,7 +61,8 @@ router.post(
   
 router.get(
     "/getInventory/:classification_id",
-    utilities.handleErrors(invCont.getInventoryJSONData)
+    //()=>{console.log("invCount.getInventoryJsonData: " + invCont.getInventoryJSONData)},
+    utilities.handleErrors(invCont.getInventoryJSON)
   );
   
   router.get(

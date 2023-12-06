@@ -114,6 +114,7 @@ async function updateInventory(
   try {
     const sql =
       "UPDATE public.inventory SET inv_make = $1, inv_model = $2, inv_description = $3, inv_image = $4, inv_thumbnail = $5, inv_price = $6, inv_year = $7, inv_miles = $8, inv_color = $9, classification_id = $10 WHERE inv_id = $11 RETURNING *"
+    
     const data = await pool.query(sql, [
       inv_make,
       inv_model,
