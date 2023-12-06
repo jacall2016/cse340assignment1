@@ -26,7 +26,7 @@
         <p>*ALL FIELDS ARE REQUIRED</p>
         <fieldset class="edit-inventory-fieldset">
             <label class="edit-inventory-label" for="inv_make">Make:</label>
-          <%- classificationSelect %>
+          <%- classificationList %>
             <input class="input top" type="text" name="inv_make" id="inv_make" required pattern="[A-Za-z0-9 ]{1,}" title="Make can only contain letters, numbers, and spaces." value="<%= locals.inv_make %>" placeholder="Min of 3 characters"/>
     
             <label class="edit-inventory-label" for="inv_model">Model:</label>

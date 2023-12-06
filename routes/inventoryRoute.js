@@ -72,9 +72,9 @@ router.get(
 
   router.post(
     "/update/",
-    //validate.addInventoryItemRules(),
-    //validate.checkUpdateData,
-    utilities.handleErrors(invCont.updateInventory)
+    validate.addInventoryItemRules(),
+    validate.checkUpdateData,
+    utilities.handleErrors(invCont.editInventoryItem)
   );
 
 module.exports = router;
