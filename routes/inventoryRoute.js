@@ -66,12 +66,14 @@ router.get(
   );
   
   router.get(
-    "/inv/edit/:inv_id",
-    utilities.handleErrors(invCont.editInventoryItem)
+    "/edit/:inv_id",
+    utilities.handleErrors(invCont.editInventoryView)
   );
 
   router.post(
     "/update/",
+    //validate.addInventoryItemRules(),
+    //validate.checkUpdateData,
     utilities.handleErrors(invCont.updateInventory)
   );
 

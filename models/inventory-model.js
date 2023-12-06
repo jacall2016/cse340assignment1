@@ -128,9 +128,16 @@ async function updateInventory(
       classification_id,
       inv_id
     ])
-    return data.rows[0]
+    console.log("data: " + data);
+    if (data.rows.length > 0) {
+      return data.rows[0];
+    } else {
+      console.error("No data returned after update");
+      return null;
+    }
   } catch (error) {
-    console.error("model error: " + error)
+    console.error("model error: " + error);
+    return null;
   }
 }
 
