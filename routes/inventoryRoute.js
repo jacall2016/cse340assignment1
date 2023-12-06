@@ -5,6 +5,23 @@ const invCont = require("../controllers/invController.js")
 const validate = require("../utilities/server-form-validation");
 const utilities = require("../utilities");
 
+
+/* ***************************
+ *  Deliver the delete confirmation view
+ * ************************** */
+router.get(
+  "/delete/:inv_id",
+  utilities.handleErrors(invCont.deleteInventoryView)
+);
+
+/* ***************************
+ *  Process the delete request
+ * ************************** */
+router.post(
+  "/delete/",
+  utilities.handleErrors(invCont.deleteInventory)
+);
+
 // Route to build inventory by classification view with error handling
 router.get(
   "/type/:classificationId", 
