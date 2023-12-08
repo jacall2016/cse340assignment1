@@ -105,4 +105,88 @@ validate.checkLoginData = async (req, res, next) => {
   next();
 };
 
+
+validate.updateRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("First name requires least one character")
+      .notEmpty()
+      .withMessage(
+        "Please fill out the first name field. *First name is required*"
+      ),
+    body("account_lastname")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Last name requires least one character")
+      .notEmpty()
+      .withMessage(
+        "Please fill out the last name field. *Last name is required*"
+      ),
+    // valid email is required
+    // if email is being changed, it cannot already exist in the database
+    body("account_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail() // refer to validator.js docs
+      .withMessage("A valid email is required.")
+      .custom(async (account_email, { req }) => {
+        const account_id = req.body.account_id;
+        const account = await accountModel.getAccountById(account_id);
+        // Check if submitted email is same as existing
+        if (account_email != account.account_email) {
+          // No - Check if email exists in table
+          const emailExists = await accountModel.checkExistingEmail(
+            account_email
+          );
+          // Yes - throw error
+          if (emailExists.count != 0) {
+            throw new Error("Email exists. Please use a different email");
+          }
+        }
+      }),
+    body("account_id").trim().isInt().withMessage("Account ID is not valid"),
+  ];
+};
+
+
+validate.checkUpdateUserData = async (req, res, next) => {
+  let nav = await utilities.getNav();
+  const { account_firstname, account_lastname, account_email, account_id } =
+    req.body;
+  let errors = [];
+  errors = validationResult(req);
+  console.log(errors);
+  if (!errors.isEmpty()) {
+    res.render("account/updateAccount", {
+      title: "Update Account",
+      nav,
+      errors,
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id,
+    });
+    return;
+  }
+  next();
+};
+
+validate.passwordRules = () => {
+  return [
+    body("newPassword")
+      .isLength({ min: 8 })
+      .withMessage("Password must be at least 8 characters long"),
+  ];
+};
+
+validate.checkPasswordData = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+};
+
 module.exports = validate

@@ -25,7 +25,7 @@ font-family: 'Lora', serif;
 }
 
 .siteName a:hover {
-color: #01b0d2;
+color: blue;
 }
 
 #tools a {
@@ -35,5 +35,5 @@ padding: 5px;
 }
 
 #tools a:hover {
-color: #01b0d2;
+color: blue;
 }

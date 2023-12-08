@@ -1,3 +1,4 @@
+const { parse } = require("dotenv");
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/index.js");
 
@@ -23,12 +24,10 @@ invCont.addNewClassification = async function (req, res, next) {
   }
 };
 
-
 // Add New Inventory Item to the Database
 invCont.addNewInventoryItem = async function (req, res, next) {
   try {
     const itemData = req.body;
-    
     await invModel.insertNewInventoryItem(itemData);
     req.flash("notice", "New inventory item added successfully!");
     res.status(201).redirect("/inv");
@@ -196,7 +195,6 @@ invCont.editInventoryItem = async function (req, res, next) {
     inv_color,
     classification_id
   )
-  console.log("updateResult: " + updateResult);
   if (updateResult) {
     const itemName = updateResult.inv_make + " " + updateResult.inv_model
     req.flash("notice", `The ${itemName} was successfully updated.`)
