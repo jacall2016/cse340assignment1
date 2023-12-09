@@ -186,6 +186,7 @@ async function updateAccount(req, res, next) {
  * Process Change Password
  *************************/
 async function changePassword(req, res, next) {
+  
   let nav = await utilities.getNav();
   const { account_email, oldPassword, newPassword } = req.body;
   const errors = validate.checkPasswordData(req);

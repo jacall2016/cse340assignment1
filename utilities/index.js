@@ -97,15 +97,17 @@ Util.buildClassificationList = async function (classification_id = null) {
       classification_id != null && row.classification_id == classification_id
         ? " selected"
         : ""
-    }>${row.classification_name}</option>`;
+    }> ${row.classification_name} </option>`;
+  });
+  /*
     if (
       classification_id != null &&
       row.classification_id == classification_id
     ) {
       classificationList += " selected ";
     }
-    classificationList += `>${row.classification_name}</option>}`;
-  });
+    classificationList += `> ${row.classification_name} </option>}`;
+  });*/
   classificationList += "</select>";
   return classificationList;
 };
@@ -144,7 +146,6 @@ Util.checkJWTToken = (req, res, next) => {
       process.env.ACCESS_TOKEN_SECRET,
       function (err, accountData) {
         if (err) {
-          
           req.flash("Please log in");
           res.clearCookie("jwt");
           return res.redirect("/account/login");
@@ -164,8 +165,6 @@ Util.checkJWTToken = (req, res, next) => {
  *  Check Login
  * ************************************ */
 Util.checkLogin = (req, res, next) => {
-  console.log("res.locals: " + JSON.stringify(res.locals))
-  
   if (res.locals.loggedin) {
     next();
   } else {

@@ -17,14 +17,12 @@
     </ul>
     <% } %>
     
-    <!-- Management view -->
-    <!-- <%#- editInventoryView %> -->
-    
-    <div class="edit-inventory-container">
+    <div class="managment">
         <script src="/js/inv-update.js"></script>
-      <form class="edit-inventory" id="updateForm" action="/inv/update" method="POST" disabled>
+      <form class="edit-inventory" id="updateForm" action="/inv/update" method="POST">
         <p>*ALL FIELDS ARE REQUIRED</p>
-        <fieldset class="edit-inventory-fieldset">
+        <div class="white-layer">
+          <fieldset class="edit-inventory-fieldset">
             <label class="edit-inventory-label" for="inv_make">Make:</label>
           <%- classificationList %>
             <input class="input top" type="text" name="inv_make" id="inv_make" required pattern="[A-Za-z0-9 ]{1,}" title="Make can only contain letters, numbers, and spaces." value="<%= locals.inv_make %>" placeholder="Min of 3 characters"/>
@@ -52,7 +50,9 @@
     
             <label class="edit-inventory-label" for="inv_color">Color:</label>
             <input class="input bottom" type="text" name="inv_color" id="inv_color" required pattern="[A-Za-z ]{1,}" title="Color can only contain letters and spaces." value="<%= locals.inv_color %>" placeholder="Example: Red"/>
-        </fieldset>
+          
+          </fieldset>
+        </div>
         <button class="inventory-submit-button" name="submit" type="submit">Update Vehicle</button>
         <input type="hidden" name="inv_id"
         <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"

@@ -1,53 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-    <div class="registration-box" data-title="Registration">
-        <h1 data-title="Registration" class="registration-h1">Registration</h1>
-        <!-- Display flash message if one is sent -->
-        <%- messages() %>
+<div class="registration-box" data-title="Registration">
+    <h1 data-title="Registration" class="registration-h1">Registration</h1>
+    <!-- Display flash message if one is sent -->
+    <%- messages() %>
 
-        <!--display errors-->
-        <% if (errors) { %>
-            <ul class="notice">
-           <% errors.array().forEach(error => { %>
-             <li><%= error.msg %></li>
-          <%  }) %>
-           </ul>
-          <% } %>
+    <!--display errors-->
+    <% if (errors) { %>
+        <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <%  }) %>
+        </ul>
+        <% } %>
+
+    <!-- Registration form -->
+    <form name="register-form" class="registration" action="/account/register" method="post">
+        <!-- First Name Input -->
+        <label for="account_firstname">First Name:</label>
+        <input type="text" name="account_firstname" id="account_firstname" required value="<%= locals.account_firstname %>">
     
-        <!-- Registration form -->
-        <form name="register-form" class="registration" action="/account/register" method="post">
-            <!-- First Name Input -->
-            <label for="account_firstname">First Name:</label>
-            <input type="text" name="account_firstname" id="account_firstname" required value="<%= locals.account_firstname %>">
-        
-            <!-- Last Name Input -->
-            <label for="account_lastname">Last Name:</label>
-            <input type="text" name="account_lastname" id="account_lastname" required value="<%= locals.account_lastname %>">
+        <!-- Last Name Input -->
+        <label for="account_lastname">Last Name:</label>
+        <input type="text" name="account_lastname" id="account_lastname" required value="<%= locals.account_lastname %>">
 
-            <!-- Email Input -->
-            <label for="account_email">Email:</label>
-            <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>">
-        
-            <!-- Password Input Container with Toggle button -->
-            <label for="account_password">Password:</label>
-            <div class="password-message">
-                <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
-            </div>
-            <div class="password-container">  
-                <input type="password" id="account_password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
-                <!-- Toggle button to toggle password visibility -->
-                <button type="button" id="togglePassword">
-                    <i class="far fa-eye" id="eyeClosed">hidden</i>
-                </button>
-            </div>
-
-            <!-- Submit Button -->
-            <input type="submit" value="Submit">
-        </form>
+        <!-- Email Input -->
+        <label for="account_email">Email:</label>
+        <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>">
     
-        <!-- No account link -->
-        <p>Already have an account? <a href="/account/login">Login</a></p>
-    </div>
+        <!-- Password Input Container with Toggle button -->
+        <label for="account_password">Password:</label>
+        <div class="password-message">
+            <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
+        </div>
+        <div class="password-container">  
+            <input type="password" id="account_password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+            <!-- Toggle button to toggle password visibility -->
+            <button type="button" id="togglePassword">
+                <i class="far fa-eye" id="eyeClosed">hidden</i>
+            </button>
+        </div>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- No account link -->
+    <p>Already have an account? <a href="/account/login">Login</a></p>
+</div>
     
 <!-- JavaScript for toggling password visibility -->
 <script>
@@ -85,5 +83,4 @@
 </script>
 
 
-    <%- include('../partials/footer') %>    
-</html>
+<%- include('../partials/footer') %>    

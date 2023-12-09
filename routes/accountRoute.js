@@ -60,7 +60,8 @@ router.post(
 
 // Change Password
 router.post(
-  "/change-password/",
+  "/change-password/:account_id",
+  //()=>{console.log("GOT A change-password REQ")},
   utilities.checkLogin,
   regValidate.passwordRules(),
   regValidate.checkPasswordData,

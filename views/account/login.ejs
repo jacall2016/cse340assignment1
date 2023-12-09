@@ -1,65 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-    <div id="wrapper" class="white-layer">
+<div class="white-layer">
 
-        <div class="login-box">              
-            
-            <h1 data-title="Your Dynamic Title Here">Login</h1>
-            <%- messages() %>
-            <form name="loginForm" id="loginForm" class="login" action="/account/login" method="post">
-                <label for="account_email">Email:</label>
-                <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>">
-                
-                <label for="account_password">Password:</label>
-                <div class="password-message">
-                    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
-                </div>
-                <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
-                <!-- Toggle button to toggle password visibility -->
-                <button type="button" id="togglePassword">
-                    <i class="far fa-eye" id="eyeClosed">hidden</i>
-                </button>
-
-                <button form="loginForm" type="submit" id="submit">Submit</button>
-            </form>
-            <p>No account? <a href="/account/register">Sign-up</a></p>
-        </div>
+    <div class="login-box">              
         
-        <!-- JavaScript for toggling password visibility -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const passwordInput = document.getElementById('account_password');
-                const togglePasswordButton = document.getElementById('togglePassword');
+        <h1 data-title="Your Dynamic Title Here">Login</h1>
+        <%- messages() %>
+        <form name="loginForm" id="loginForm" class="login" action="/account/login" method="post">
+            <label for="account_email">Email:</label>
+            <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>">
+            
+            <label for="account_password">Password:</label>
+            <div class="password-message">
+                <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+            </div>
+            <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+            <!-- Toggle button to toggle password visibility -->
+            <button type="button" id="togglePassword">
+                <i class="far fa-eye" id="eyeClosed">hidden</i>
+            </button>
 
-                if (passwordInput && togglePasswordButton) {
-                    togglePasswordButton.addEventListener('click', function () {
-                        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                        passwordInput.setAttribute('type', type);
-
-                        // Toggle eye icons
-                        if (type === 'password') {
-                            togglePasswordButton.innerHTML = '<i class="far fa-eye-slash">hidden</i>'; // Font Awesome closed eye icon
-                        } else {
-                            togglePasswordButton.innerHTML = '<i class="far fa-eye">visible</i>'; // Font Awesome open eye icon
-                        }
-                    });
-                }
-            });
-        </script>
-
-        <script src="/js/password-validation.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // ... your existing password toggle code ...
-
-                // Use the common validatePassword function with specific parameters
-                window.validateLoginPassword = function () {
-                    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$/;
-                    return validatePassword('login-password', 'password-message', passwordPattern);
-                };
-            });
-        </script>
-
-        <%- include('../partials/footer') %>
+            <button form="loginForm" type="submit" id="submit">Submit</button>
+        </form>
+        <p>No account? <a href="/account/register">Sign-up</a></p>
     </div>
-</html>
+    
+    <!-- JavaScript for toggling password visibility -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.getElementById('account_password');
+            const togglePasswordButton = document.getElementById('togglePassword');
+
+            if (passwordInput && togglePasswordButton) {
+                togglePasswordButton.addEventListener('click', function () {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+
+                    // Toggle eye icons
+                    if (type === 'password') {
+                        togglePasswordButton.innerHTML = '<i class="far fa-eye-slash">hidden</i>'; // Font Awesome closed eye icon
+                    } else {
+                        togglePasswordButton.innerHTML = '<i class="far fa-eye">visible</i>'; // Font Awesome open eye icon
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script src="/js/password-validation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // ... your existing password toggle code ...
+
+            // Use the common validatePassword function with specific parameters
+            window.validateLoginPassword = function () {
+                const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$/;
+                return validatePassword('login-password', 'password-message', passwordPattern);
+            };
+        });
+    </script>
+
+    <%- include('../partials/footer') %>
+</div>

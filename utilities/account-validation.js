@@ -44,12 +44,30 @@ validate.checkLoginData = async (req, res, next) => {
 validate.registationRules = () => {
   return [
 
+    body("account_firstname")
+      .trim()
+      .isLength({ min: 1})
+      .withMessage("enter first name"),
+
+    body("account_lastname")
+      .trim()
+      .isLength({ min: 2})
+      .withMessage("enter last name"),
+
     // valid email is required and cannot already exist in the DB
     body("account_email")
     .trim()
     .isEmail()
     .normalizeEmail() // refer to validator.js docs
-    .withMessage("A valid email is required."),
+    .withMessage("A valid email is required.")
+    .custom(async (account_email) => {
+      const emailEists = await accountModel.checkExistingEmail(
+        account_email
+      );
+      if (emailExists) {
+        throw new Error("Email exists. please use another email");
+      }
+    }),
 
     // password is required and must be strong password
     body("account_password")
@@ -82,9 +100,9 @@ validate.checkRegData = async (req, res, next) => {
       account_lastname,
       account_email,
     })
-    return
+    return;
   }
-  next()
+  next();
 };
 
 validate.checkLoginData = async (req, res, next) => {
@@ -175,8 +193,15 @@ validate.checkUpdateUserData = async (req, res, next) => {
 
 validate.passwordRules = () => {
   return [
-    body("newPassword")
-      .isLength({ min: 8 })
+    body("account_Password")
+      .trim()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols:1,
+      })
       .withMessage("Password must be at least 8 characters long"),
   ];
 };
@@ -189,4 +214,4 @@ validate.checkPasswordData = (req, res, next) => {
   next();
 };
 
-module.exports = validate
+module.exports = validate;

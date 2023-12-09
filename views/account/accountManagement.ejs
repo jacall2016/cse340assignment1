@@ -11,8 +11,23 @@
     </ul>
     <% } %>
     
-    <!-- messages -->
-    <%- messages() %>
+    <div class="managment">
+      <!-- messages -->
+      <%- messages() %>
+
+      <h2>Welcome <%= locals.accountData.account_firstname %></h2>
+      <% if (locals.accountData.accountType === "Client") { %>
+        <h2>Welcome <%= locals.accountData.firstName %></h2>
+      <% } else if (locals.accountData.accountType === "Employee" || locals.accountData.accountType === "Admin") { %>
+        <h2>Welcome <%= locals.accountData.firstName %></h2>
+        <h3>Inventory Management</h3>
+        <p><a href="/inv">Access Inventory Management</a></p>
+      <% } %>
+  
     
-    <p>You're Logged in</p>
-    <a href="/">Edit Account Information</a>
+      <h3>Manage Account</h3>
+      
+      <p>You're Logged in</p>
+      <p><a href="/account/update/<%= locals.accountData.account_id %>">Edit Account Information</a></p>
+
+    </div>
