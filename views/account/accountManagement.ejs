@@ -14,14 +14,13 @@
     <div class="managment">
       <!-- messages -->
       <%- messages() %>
+      <h2 class="welcome-message">Welcome <%= locals.accountData.account_firstname %></h2>
+      <% }
+      if (locals.accountData.account_type === "Employee" ||
+      locals.accountData.account_type === "Admin") { %>
 
-      <h2>Welcome <%= locals.accountData.account_firstname %></h2>
-      <% if (locals.accountData.accountType === "Client") { %>
-        <h2>Welcome <%= locals.accountData.firstName %></h2>
-      <% } else if (locals.accountData.accountType === "Employee" || locals.accountData.accountType === "Admin") { %>
-        <h2>Welcome <%= locals.accountData.firstName %></h2>
-        <h3>Inventory Management</h3>
-        <p><a href="/inv">Access Inventory Management</a></p>
+      <h3 class="inventory-heading">Inventory Management</h3>
+      <p class="inventory-link"><a href="/inv">Access Inventory Management</a></p>
       <% } %>
   
     
@@ -29,5 +28,8 @@
       
       <p>You're Logged in</p>
       <p><a href="/account/update/<%= locals.accountData.account_id %>">Edit Account Information</a></p>
+
+      <% if (locals.accountData.account_type === "Admin") { %>
+      <p><a href="/account/update_account_type">Edit Acount Type</a></p>
 
     </div>

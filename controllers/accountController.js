@@ -37,7 +37,7 @@ async function registerAccount(req, res) {
   const { 
     account_firstname, 
     account_lastname, 
-    account_email, 
+    account_email,
     account_password 
   } = req.body;
 
@@ -239,6 +239,46 @@ function logout(req, res) {
   res.clearCookie("jwt");
   res.redirect("/");
 }
+async function getUpdateAccountTypePage(req, res) {
+  try {
+    let nav = await utilities.getNav();
+
+    // Fetch account data
+    const clients = await accountModel.getAccountsByType("Client");
+    const employees = await accountModel.getAccountsByType("Employee");
+    const admins = await accountModel.getAccountsByType("Admin");
+
+    // Render the template with the fetched data
+    res.render('account/update_account_type', {
+      title: 'Update Account Type',
+      nav,
+      errors: null,
+      clients,
+      employees,
+      admins,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+async function updateAccountType (req, res) {
+  try {
+    const accountId = req.params.accountId;
+    const newType = req.query.type;
+
+    // Update the account type in the database
+    await accountModel.getAccountById(account_id)
+
+    // Redirect back to the update_account_type page
+    res.redirect('/account/update_account_type');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
 
 // Export the functions for use in accountRoute.js
 module.exports = {
@@ -251,4 +291,6 @@ module.exports = {
   updateAccount,
   changePassword,
   logout,
+  getUpdateAccountTypePage,
+  updateAccountType,
 };

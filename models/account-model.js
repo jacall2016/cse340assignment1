@@ -63,6 +63,20 @@ async function getAccountById (account_id) {
   }
 }
 
+async function getAccountsByType(account_Type) {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_type = $1',
+      [account_Type]
+    );
+    
+    return result.rows;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error fetching accounts by type");
+  }
+}
+
 /* ***********************
  * Update Account
  *************************/
@@ -98,5 +112,6 @@ module.exports = {
   getAccountById,
   updateAccount,
   updatePassword,
+  getAccountsByType,
   // Add more exported functions as needed...
 };

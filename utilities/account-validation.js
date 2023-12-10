@@ -202,14 +202,28 @@ validate.passwordRules = () => {
         minNumbers: 1,
         minSymbols:1,
       })
-      .withMessage("Password must be at least 8 characters long"),
+      .withMessage("Password must be at least 12 characters long"),
   ];
 };
 
-validate.checkPasswordData = (req, res, next) => {
-  const errors = validationResult(req);
+validate.checkPasswordData = async (req, res, next) => {
+  let nav = await utilities.getNav();
+  const { account_firstname, account_lastname, account_email, account_id } =
+    req.body;
+  let errors = [];
+  errors = validationResult(req);
+  console.log(errors);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    res.render("account/updateAccount", {
+      title: "Update Account",
+      nav,
+      errors,
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id,
+    });
+    return;
   }
   next();
 };

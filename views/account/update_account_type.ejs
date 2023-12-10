@@ -1,0 +1,62 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+  <% } else { 
+    res.redirect('/');
+  } %>
+  
+  <!-- error message -->
+  <%- messages() %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %>
+  
+  <div class="management">
+    <!-- messages -->
+    <%- messages() %>
+  
+    <h3>Update Account Type</h3>
+  
+    <div class="account-list">
+      <!-- Client Accounts -->
+      <h4>Client Accounts</h4>
+      <ul>
+        <% clients.forEach(client => { %>
+          <li>
+            <%= client.account_firstname %> 
+            (<a href="/account/update_account_type/<%= client.account_id %>?type=Client">Update Account Type</a>)
+            | 
+            (<a href="/account/update/<%= client.account_id %>">Edit</a>)
+          </li>
+        <% }) %>
+      </ul>
+  
+      <!-- Employee Accounts -->
+      <h4>Employee Accounts</h4>
+      <ul>
+        <% employees.forEach(employee => { %>
+          <li>
+            <%= employee.account_firstname %> 
+            (<a href="/account/update_account_type/<%= employee.account_id %>?type=Employee">Update Account Type</a>)
+            | 
+            (<a href="/account/update/<%= employee.account_id %>">Edit</a>)
+          </li>
+        <% }) %>
+      </ul>
+  
+      <!-- Admin Accounts -->
+      <h4>Admin Accounts</h4>
+      <ul>
+        <% admins.forEach(admin => { %>
+          <li>
+            <%= admin.account_firstname %> 
+            (<a href="/account/update_account_type/<%= admin.account_id %>?type=Admin">Update Account Type</a>)
+            | 
+            (<a href="/account/update/<%= admin.account_id %>">Edit</a>)
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>

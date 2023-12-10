@@ -91,10 +91,42 @@
                 type="hidden"
                 name="account_id"
                 value="<%= locals.accountData.account_id %>"
-              />           
+              />
+              
               <button type="submit">Change Password</button>
             </div>
           </fieldset>
         </form>
       </div>
+      <% if (locals.accountData.account_type === 'Admin') { %>
+        <!-- Display additional section for editing account type for Admins -->
+        <h1 class="account-type-header">Edit Account Type</h1>
+    
+        <div class="white-layer">
+          <form class="update-account-form" action="/account/updateAccountType/" method="POST">
+            <fieldset class="fieldset">
+              <div>
+                <label class="label" for="account_type">Account Type:</label>
+                <input
+                  class="input top"
+                  type="text"
+                  id="account_type"
+                  name="account_type"
+                  value="<%= locals.accountData.account_type %>"
+                  required
+                />
+    
+                <input
+                  class="form-hidden"
+                  type="hidden"
+                  name="account_id"
+                  value="<%= locals.accountData.account_id %>"
+                />
+    
+                <button type="submit">Update Account Type</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      <% } %>
     </div>

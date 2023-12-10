@@ -73,5 +73,15 @@ router.get(
   accountController.logout
 );
 
+// Update account type page
+router.get(
+  '/update_account_type', 
+  utilities.handleErrors(accountController.getUpdateAccountTypePage)
+);
+
+// Update account type functionality
+router.post('/update_account_type/:accountId', accountController.updateAccountType);
+
+
 // Export the router for use elsewhere
 module.exports = router;
